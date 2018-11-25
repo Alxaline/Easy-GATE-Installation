@@ -51,6 +51,7 @@ FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
 if [[ $FREE -lt 13631488 ]]; then               # 13G = 13*1024*1024k
      echo "You need at least 13 GBs of free space to install GATE !"
      echo "less than 13 GBs free!"
+     return
 fi
 
 ## Check internet connection
