@@ -121,7 +121,7 @@ cd /usr/local (default path) or cd /somedir (personalize path)
 sudo rm -R GATE
 ```
 ### Second remove the environnement variable
-The script will add the environnement variable to your .bashrc. Remove the line at the end:
+The script will add the environnement variable to your .bashrc:
 ```
 gedit ~/.bashrc
 ```
