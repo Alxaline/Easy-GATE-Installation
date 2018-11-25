@@ -59,6 +59,12 @@ cd Easy-GATE-Installation
 source easy_gate.sh
 ```
 
+# How to run GATE after installation? 
+Just type in your terminal
+```
+Gate
+```
+
 # Cluster tools (optional)
 For information on How to use Gate on a Cluster, please refer to [the official users guide](http://wiki.opengatecollaboration.org/index.php/Users_Guide:How_to_use_Gate_on_a_Cluster)
 ## Installation
@@ -94,11 +100,6 @@ condor_submit your_file.submit
 ### optional step:
 If you want to merge your file after simulation, please refer to [the official users guide](http://wiki.opengatecollaboration.org/index.php/Users_Guide:How_to_use_Gate_on_a_Cluster)
 
-# How to run GATE after installation? 
-Just type in your terminal
-```
-Gate
-```
 # Information
 ## Where is installed GATE?
 If you use default path installation, GATE is installed in:
