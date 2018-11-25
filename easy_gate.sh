@@ -267,7 +267,7 @@ mkdir bin
 cd bin
 cmake DITK_USE_REVIEW=ON -DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON -DINSTALL_GTEST=ON -DITKV3_COMPATIBILITY=OFF -DITK_BUILD_DEFAULT_MODULES=ON -DITK_WRAP_PYTHON=OFF ..
 make -j$(nproc)
-make install
+sudo make install
 cd ../..
 echo "Installation of ITK 4.13.1 done."
 echo -e "\n"
