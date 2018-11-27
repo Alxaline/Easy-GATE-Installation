@@ -2,7 +2,6 @@
 [![Easy GATE](https://img.shields.io/badge/Easy%20GATE-v1.0-brightgreen.svg)](https://github.com/Alxaline/Easy-GATE-Installation)
 ![platform](https://img.shields.io/badge/plateform-Ubuntu-lightgrey.svg)
 ![APMLicense](https://img.shields.io/badge/licence-MIT-green.svg)
-[![Donwload](https://img.shields.io/github/downloads/Alxaline/Easy-GATE-Installation/total.svg)]()
 
 <p align="center"> <b>
   You want to install GATE and you don't know how to do it ? You are in the right place !!!
