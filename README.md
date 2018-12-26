@@ -1,6 +1,6 @@
 # Easy GATE Installation
-[![Easy GATE](https://img.shields.io/badge/Easy%20GATE-v1.0-brightgreen.svg)](https://github.com/Alxaline/Easy-GATE-Installation)
-![platform](https://img.shields.io/badge/plateform-Ubuntu-lightgrey.svg)
+[![Easy GATE](https://img.shields.io/badge/Easy%20GATE-v1.1-brightgreen.svg)](https://github.com/Alxaline/Easy-GATE-Installation)
+![platform](https://img.shields.io/badge/plateform-Linux-lightgrey.svg)
 ![APMLicense](https://img.shields.io/badge/licence-MIT-green.svg)
 
 <p align="center"> <b>
@@ -14,13 +14,16 @@
 GATE is an advanced opensource software developed by the international OpenGATE collaboration and dedicated to numerical simulations in medical imaging and radiotherapy. It currently supports simulations of Emission Tomography (Positron Emission Tomography - PET and Single Photon Emission Computed Tomography - SPECT), Computed Tomography (CT), Optical Imaging (Bioluminescence and Fluorescence) and Radiotherapy experiments. Using an easy-to-learn macro mechanism to configurate simple or highly sophisticated experimental settings, GATE now plays a key role in the design of new medical imaging devices, in the optimization of acquisition protocols and in the development and assessment of image reconstruction algorithms and correction techniques. It can also be used for dose calculation in radiotherapy experiments.
 
 The installation of GATE is tedious, time consuming and may seem complicated for a novice user. In order not to discourage a novice user to apprehend the formidable tool that is GATE. You can use the script provided here which will install absolutely all the necessary files. All you have to do is comply the following instructions. The compilation is long, so don't be afraid !
-For more advance users, the script also allows you to install cluster tools with HTcondor.
+For more advance users, the script also allows you to install cluster tools with HTcondor (only for Ubuntu distro).
 </p>
 
 The script has been tested on : 
 - Ubuntu 18.04
-- Ubuntu 16.04 </br>
-*The script is supposed to work on Ubuntu versions from 14 to 18.*
+- Ubuntu 16.04 
+- openSUSE Leap 15.0
+- Fedora 29
+- Centos 7 (required cmake 3.3 or higher)
+</br>
 
 Some informations : 
 - If you want to know more about GATE, please refer to [the official webpage of GATE](http://www.opengatecollaboration.org/).<br/>
@@ -59,12 +62,16 @@ source easy_gate.sh
 ```
 
 # How to run GATE after installation? 
-Just type in your terminal
+Source Gate:
+```
+source-gatev8.1
+```
+Then:
 ```
 Gate
 ```
 
-# Cluster tools (optional)
+# Cluster tools (optional for Ubuntu distro)
 For information on How to use Gate on a Cluster, please refer to [the official users guide](http://wiki.opengatecollaboration.org/index.php/Users_Guide:How_to_use_Gate_on_a_Cluster)
 ## Installation
 After the installation of GATE the script will ask you if you want to install cluster tools. In this case, respond "Yes". The script will then install cluster tools (jobsplitter, filemerge) and HTcondor. For non expert users, we recommand you to answer "yes" for the HTcondor prompt GUI.
@@ -111,7 +118,7 @@ If you use default path installation, GATE is installed in:
 - Geant4 10.4.p02 
 - InsightToolkit 4.13.1
 - Gate V8.1 
-- Cluster tools / HTcondor (optional)
+- Cluster tools / HTcondor (optional for Ubuntu distro)
 
 ## Doubt about quality of the installation ?
 if you have any doubt about the quality of the installation and want to remove it.
@@ -127,6 +134,7 @@ gedit ~/.bashrc
 ```
 Remove the line at the end:
 ```
-source /usr/local/GATE/gate_env.sh (default path) or source /somedir/GATE/gate_env.sh (personalize path)
+alias source-gatev8.1="source /usr/local/GATE/gate_env.sh" (default path) or source alias source-gatev8.1="source /somedir/GATE/gate_env.sh" (personalize path)
 ```
 
+alias source-gatev8.1="source /usr/local/GATE/gate_env.sh"
