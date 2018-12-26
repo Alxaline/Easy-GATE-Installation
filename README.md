@@ -23,8 +23,9 @@ The script has been tested on :
 - openSUSE Leap 15.0
 - Fedora 29
 - Centos 7 (required cmake 3.3 or higher)
-</br> 
+
 If you want the tool available for other distributions, please contact me ! 
+</br> 
 
 Some informations : 
 - If you want to know more about GATE, please refer to [the official webpage of GATE](http://www.opengatecollaboration.org/).<br/>
