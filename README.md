@@ -24,7 +24,6 @@ The script has been tested on :
 - Fedora 29
 - Centos 7 (required cmake 3.3 or higher)
 </br> 
-
 If you want the tool available for other distributions, please contact me ! 
 
 Some informations : 
