@@ -136,5 +136,3 @@ Remove the line at the end:
 ```
 alias source-gatev8.1="source /usr/local/GATE/gate_env.sh" (default path) or source alias source-gatev8.1="source /somedir/GATE/gate_env.sh" (personalize path)
 ```
-
-alias source-gatev8.1="source /usr/local/GATE/gate_env.sh"
