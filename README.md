@@ -25,7 +25,7 @@ The script has been tested on :
 - Centos 7 (required cmake 3.3 or higher)
 </br> 
 
-If you want the tool available for other distributions, please contact me !
+If you want the tool available for other distributions, please contact me ! 
 
 Some informations : 
 - If you want to know more about GATE, please refer to [the official webpage of GATE](http://www.opengatecollaboration.org/).<br/>
