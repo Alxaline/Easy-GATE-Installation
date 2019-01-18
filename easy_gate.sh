@@ -30,8 +30,8 @@ echo "  |  |(_(alexandre.carre@gustaveroussy.fr|"
 echo " "
 
 ## Check os release
-DISTRO=$( cat /etc/*-release | tr [:upper:] [:lower:] | grep -Poi '(debian|ubuntu|red hat|centos|scientific|opensuse)' | uniq )
-if [ -z $DISTRO ]; then
+DISTRO=$( cat /etc/*-release | tr [:upper:] [:lower:] | grep -Poi '(debian|ubuntu|red hat|centos|scientific|opensuse)' | uniq -c | sort -r | head -1|  xargs | cut -d" " -f2- )
+if [[ -z $DISTRO ]]; then
     DISTRO='unknown'
     echo "Detected Linux distribution: $DISTRO"
     echo "The script has not been done for your distribution, sorry ..."
