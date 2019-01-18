@@ -268,6 +268,7 @@ echo 'alias source-gatev8.1'='"source '$GPTH'/GATE/gate_env.sh''"' >> ~/.bashrc
 source ~/.bashrc
 
 ## verify if Gate is installed and present in $GPTH/GATE/gate_v8.1.p01-install/bin
+source-gatev8.1
 if ! which Gate 2>/dev/null
 then
     echo "'Gate' was not found in PATH, a problem seems to be appeared during installation."
