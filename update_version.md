@@ -5,3 +5,6 @@
 - Taking into account others distros : Fedora, Debian, Centos, openSUSE, scientific
 - Alias for source GATE (source-gatev8.1) instead of a direct source which allow to run different version of GATE.
 - minor bug fixes
+
+# version 1.2
+- bug fixes

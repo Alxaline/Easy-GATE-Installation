@@ -2,9 +2,9 @@
 
 # Easy GATE Installation 
 # Simplify the Installation of the GATE monte-carlo simulation toolkit
-# Version 1.1
+# Version 1.2
 # Created on: Nov 25, 2018
-# Updated on: Dec 26, 2018
+# Updated on: Jan 18, 2019
 # Author: Alexandre CARRE (alexandre.carre@gustaveroussy.fr)
 # NB : Use this script at your own Risk
 
@@ -12,7 +12,7 @@ echo "       *     ,MMM8&&&.            *       "
 echo "            MMMM88&&&&&    .              "
 echo "           MMMM88&&&&&&&                  "
 echo "  *        M Easy GATE &          *       "
-echo "           MMM V1.1 &&&&                  "
+echo "           MMM V1.2 &&&&                  "
 echo "           'MMM88&&&&&&'             .    "
 echo "             'MMM8&&&'      *             "
 echo "    |\___/|                               "
@@ -192,6 +192,7 @@ sudo yum check-update
 sudo yum install git cmake gcc-c++ gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel -y
 # To get optional packages
 sudo yum install gcc-gfortran openssl-devel pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw-devel cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel libldap-dev python-devel libxml2-devel gsl-static -y
+fi
 
 if [ "$INSTALL_TYPE" = "zypper" ]; then
 sudo zypper update -y
