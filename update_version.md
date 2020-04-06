@@ -8,3 +8,9 @@
 
 # version 1.2
 - bug fixes
+
+# version 1.3
+- update to root_v6.20.04
+- update to InsightToolkit-5.0.1
+- update to geant4.10.06.p01
+- update to Gate-9.0

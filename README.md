@@ -30,7 +30,7 @@ If you want the tool available for other distributions, please contact me !
 Some informations : 
 - If you want to know more about GATE, please refer to [the official webpage of GATE](http://www.opengatecollaboration.org/).<br/>
 - GATE User's Guide is available on [Wiki OpenGATE](http://wiki.opengatecollaboration.org/index.php/Users_Guide).<br/>
-- Before use this tool on your system maybe you want to know about the possibility to use an image of the vGATE 8.1, virtual machine equipped with all the necessary software for running GATE simulations, please refer to [the official vGate 8.1 webpage](http://www.opengatecollaboration.org/node/84)<br/>
+- Before use this tool on your system maybe you want to know about the possibility to use an image of the vGATE 9.0, virtual machine equipped with all the necessary software for running GATE simulations, please refer to [the official vGate 9.0 webpage](https://opengate.readthedocs.io/en/latest/compilation_instructions.html)<br/>
 
 Report bugs to the author [Alexandre CARRE](mailto:alexandre.carre@gustaveroussy.fr)<br/>
 NB : use this script at your own risk.
@@ -66,7 +66,7 @@ source easy_gate.sh
 # How to run GATE after installation? 
 Source Gate:
 ```
-source-gatev8.1
+gate90
 ```
 Then:
 ```
@@ -86,18 +86,18 @@ export GC_DOT_GATE_DIR=/somedir/
 ```
 if default path installation:
 ```
-export GC_GATE_EXE_DIR=/usr/local/GATE/gate_v8.1.p01-install/bin
+export GC_GATE_EXE_DIR=/usr/local/GATE/Gate-9.0-install/bin
 ```
 if personnalize path installation:
 ```
-export GC_GATE_EXE_DIR=/somedir/GATE/gate_v8.1.p01-install/bin
+export GC_GATE_EXE_DIR=/somedir/GATE/Gate-9.0-install/bin
 ```
 The first variable indicates the location of a hidden directory called .Gate. The directory will contain the split macros for each part of the simulation. Even when splitting the same macro several times, a new directory will be created for each instance (with an incremental number).
 The second environment variable indicates the location of the job splitter executable. (you don't have to modify it)
 ### Second step:
 Execute from your macro path this command:
 ```
-../somedir/GATE/gate_v8.1.p01/cluster_tools/jobsplitter/gjs  -numberofsplits N -clusterplatform condor -condorscript ../somedir/GATE/gate_v8.1.p01/cluster_tools/jobsplitter/script/condor.script  your_file.mac
+../somedir/GATE/Gate-9.0/cluster_tools/jobsplitter/gjs  -numberofsplits N -clusterplatform condor -condorscript ../somedir/GATE/Gate-9.0/cluster_tools/jobsplitter/script/condor.script  your_file.mac
 ```
 The job splitter will subdivide the simulation macro into fully resolved, non-parameterized macros. In this case there are N such macros. Remplace N by the number of macros that you want. They are located in the .Gate directory, as specified by the GC_DOT_GATE_DIR environment variable.
 ### Third step:
@@ -116,10 +116,10 @@ If you use default path installation, GATE is installed in:
 ```
 ## What this script will install ?
 - Package Requirements 
-- ROOT 6.14/04
-- Geant4 10.4.p02 
-- InsightToolkit 4.13.1
-- Gate V8.1 
+- ROOT 6.20/04
+- Geant4 10.6.p01
+- InsightToolkit 5.0.1
+- Gate V9.0 
 - Cluster tools / HTcondor (optional for Ubuntu distro)
 
 ## Doubt about quality of the installation ?
@@ -136,5 +136,5 @@ gedit ~/.bashrc
 ```
 Remove the line at the end:
 ```
-alias source-gatev8.1="source /usr/local/GATE/gate_env.sh" (default path) or source alias source-gatev8.1="source /somedir/GATE/gate_env.sh" (personalize path)
+alias gate90="source /usr/local/GATE/gate_env.sh" (default path) or source alias gate90="source /somedir/GATE/gate_env.sh" (personalize path)
 ```

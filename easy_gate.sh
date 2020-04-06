@@ -4,7 +4,7 @@
 # Simplify the Installation of the GATE monte-carlo simulation toolkit
 # Version 1.2
 # Created on: Nov 25, 2018
-# Updated on: Jan 18, 2019
+# Updated on: April 06, 2020
 # Author: Alexandre CARRE (alexandre.carre@gustaveroussy.fr)
 # NB : Use this script at your own Risk
 
@@ -12,22 +12,31 @@ echo "       *     ,MMM8&&&.            *       "
 echo "            MMMM88&&&&&    .              "
 echo "           MMMM88&&&&&&&                  "
 echo "  *        M Easy GATE &          *       "
-echo "           MMM V1.2 &&&&                  "
+echo "           MMM V1.3 &&&&                  "
 echo "           'MMM88&&&&&&'             .    "
 echo "             'MMM8&&&'      *             "
 echo "    |\___/|                               "
 echo "    )     (           installation :      "
 echo "   =\     /=      - Package Requirements  "
-echo "     )===(        - ROOT 6.14/04          "
-echo "    /     \       - Geant4 10.4.p02       "
-echo "    |     |       - InsightToolkit 4.13.1 "
-echo "   /       \      - Gate V8.1             "
+echo "     )===(        - ROOT 6.20/04          "
+echo "    /     \       - Geant4 10.6.p01       "
+echo "    |     |       - InsightToolkit 5.0.1  "
+echo "   /       \      - Gate V9.0             "
 echo "   \       /      - Cluster tools (opt)   "
 echo "  _/\__  _/_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\ "
 echo "  |  |( (  |  |Author : Alexandre CARRE  |"  
 echo "  |  | ) ) |  |  |  |  |  |  |  |  |  |  |"
 echo "  |  |(_(alexandre.carre@gustaveroussy.fr|"
 echo " "
+
+
+# simple function to check http response code before downloading a remote file
+# example usage:
+# if `validate_url $url >/dev/null`; then dosomething; else echo "does not exist"; fi
+# https://gist.github.com/hrwgc/7455343
+function validate_url(){
+  if [[ `wget -S --spider $1  2>&1 | grep 'HTTP/1.1 200 OK'` ]]; then echo "true"; fi
+}
 
 ## Check os release
 DISTRO=$( cat /etc/*-release | tr [:upper:] [:lower:] | grep -Poi '(debian|ubuntu|red hat|centos|scientific|opensuse)' | uniq -c | sort -r | head -1|  xargs | cut -d" " -f2- )
@@ -136,48 +145,49 @@ cd $GPTH/GATE
 
 ## Download all the files for Gate installation
 #root
-url_root="https://root.cern.ch/download/root_v6.14.04.source.tar.gz"
-if wget $url_root --spider >/dev/null 2>&1 ; then
+url_root="https://root.cern.ch/download/root_v6.20.04.source.tar.gz"
+if validate_url url_root; then
     echo "Url : $url_root exists..."
-    wget https://root.cern.ch/download/root_v6.14.04.source.tar.gz
-    tar -xvzf root_v6.14.04.source.tar.gz
-    rm root_v6.14.04.source.tar.gz
-else
+    wget https://root.cern.ch/download/root_v6.20.04.source.tar.gz
+    tar -xvzf root_v6.20.04.source.tar.gz
+    rm root_v6.20.04.source.tar.gz
+  else
     echo "Url : $url_root doesn't exists.."
     echo "The link seems to be broken, please contact the author to update the script"
     return
 fi
+
 #itk
-url_itk="https://sourceforge.net/projects/itk/files/itk/4.13/InsightToolkit-4.13.1.tar.gz"
-if wget $url_itk --spider >/dev/null 2>&1 ; then
+url_itk="https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.0.1/InsightToolkit-5.0.1.tar.gz"
+if validate_url url_itk; then
     echo "Url : $url_itk exists..."
-    wget https://sourceforge.net/projects/itk/files/itk/4.13/InsightToolkit-4.13.1.tar.gz
-    tar -xvzf InsightToolkit-4.13.1.tar.gz
-    rm InsightToolkit-4.13.1.tar.gz
+    wget https://github.com/InsightSoftwareConsortium/ITK/releases/download/v5.0.1/InsightToolkit-5.0.1.tar.gz
+    tar -xvzf InsightToolkit-5.0.1.tar.gz
+    rm InsightToolkit-5.0.1.tar.gz
 else
     echo "Url : $url_itk doesn't exists.."
     echo "The link seems to be broken, please contact the author to update the script"
     return
 fi
 #geant4
-url_geant="http://cern.ch/geant4-data/releases/geant4.10.04.p02.tar.gz"
-if wget $url_geant --spider >/dev/null 2>&1 ; then
+url_geant="http://cern.ch/geant4-data/releases/geant4.10.06.p01.tar.gz"
+if validate_url url_geant; then
     echo "Url : $url_geant exists..."
-    wget http://cern.ch/geant4-data/releases/geant4.10.04.p02.tar.gz
-    tar -xvzf geant4.10.04.p02.tar.gz
-    rm geant4.10.04.p02.tar.gz
+    wget http://cern.ch/geant4-data/releases/geant4.10.06.p01.tar.gz
+    tar -xvzf geant4.10.06.p01.tar.gz
+    rm geant4.10.06.p01.tar.gz
 else
     echo "Url : $url_geant doesn't exists.."
     echo "The link seems to be broken, please contact the author to update the script"
     return
 fi
 #gate
-url_gate="http://www.opengatecollaboration.org/sites/default/files/gate_v8.1.p01.tar.gz"
-if wget $url_gate --spider >/dev/null 2>&1 ; then
+url_gate=" https://github.com/OpenGATE/Gate/archive/v9.0.zip"
+if validate_url url_gate; then
     echo "Url : $url_gate exists..."
-    wget http://www.opengatecollaboration.org/sites/default/files/gate_v8.1.p01.tar.gz
-    tar -xvzf gate_v8.1.p01.tar.gz
-    rm gate_v8.1.p01.tar.gz
+    wget  https://github.com/OpenGATE/Gate/archive/v9.0.zip
+    unzip v9.0.zip
+    rm v9.0.zip
 else
     echo "Url : $url_gate doesn't exists.."
     echo "The link seems to be broken, please contact the author to update the script"
@@ -214,61 +224,61 @@ echo -e "\n"
 echo 'Installation of pre-requisites done.'
 echo -e "\n"
 ## Installation of ROOT
-echo "Installation of root-6.14.04"
-mkdir root-6.14.04-build
-cd $GPTH/GATE/root-6.14.04-build
-cmake ../root-6.14.04
+echo "Installation of root-6.20.04"
+mkdir root-6.20.04-build
+cd $GPTH/GATE/root-6.20.04-build
+cmake ../root-6.20.04
 cmake --build . -- -j$(nproc)
-source $GPTH/GATE/root-6.14.04-build/bin/thisroot.sh
+source $GPTH/GATE/root-6.20.04-build/bin/thisroot.sh
 cd ..
-echo "Installation of root-6.14.04 done."
+echo "Installation of root-6.20.04 done."
 echo -e "\n"
 ## Installation of Geant4
-echo "Installation of Geant4 10.4.p02"
-mkdir geant4.10.04.p02-build
-mkdir geant4.10.04.p02-install
-cd $GPTH/GATE/geant4.10.04.p02-build
-cmake -DCMAKE_INSTALL_PREFIX=$GPTH/GATE/geant4.10.04.p02-install -DCMAKE_BUILD_TYPE=RELEASE -DGEANT4_BUILD_MULTITHREADED=OFF -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_G3TOG4=OFF -DGEANT4_USE_GDML=OFF -DGEANT4_USE_INVENTOR=OFF -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON -DGEANT4_USE_RAYTRACER_X11=OFF -DGEANT4_USE_SYSTEM_EXPAT=ON -DGEANT4_USE_SYSTEM_ZLIB=OFF -DGEANT4_USE_XM=OFF $GPTH/GATE/geant4.10.04.p02
+echo "Installation of Geant4 10.6.p01"
+mkdir geant4.10.06.p01-build
+mkdir geant4.10.06.p01-install
+cd $GPTH/GATE/geant4.10.06.p01-build
+cmake -DCMAKE_INSTALL_PREFIX=$GPTH/GATE/geant4.10.06.p01-install -DCMAKE_BUILD_TYPE=RELEASE -DGEANT4_BUILD_MULTITHREADED=OFF -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_G3TOG4=OFF -DGEANT4_USE_GDML=OFF -DGEANT4_USE_INVENTOR=OFF -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON -DGEANT4_USE_RAYTRACER_X11=OFF -DGEANT4_USE_SYSTEM_EXPAT=ON -DGEANT4_USE_SYSTEM_ZLIB=OFF -DGEANT4_USE_XM=OFF $GPTH/GATE/geant4.10.06.p01
 make -j$(nproc)
 make install
-source $GPTH/GATE/geant4.10.04.p02-install/bin/geant4.sh
+source $GPTH/GATE/geant4.10.06.p01-install/bin/geant4.sh
 cd ..
 echo "Installation of Geant4 10.4.p02 done."
 echo -e "\n"
 ## Installation of ITK
-echo "Installation of ITK 4.13.1 "
-cd $GPTH/GATE/InsightToolkit-4.13.1
+echo "Installation of ITK 5.0.1 "
+cd $GPTH/GATE/InsightToolkit-5.0.1
 mkdir bin
 cd bin
 cmake DITK_USE_REVIEW=ON -DBUILD_EXAMPLES=ON -DBUILD_TESTING=ON -DINSTALL_GTEST=ON -DITKV3_COMPATIBILITY=OFF -DITK_BUILD_DEFAULT_MODULES=ON -DITK_WRAP_PYTHON=OFF ..
 make -j$(nproc)
 sudo make install
 cd ../..
-echo "Installation of ITK 4.13.1 done."
+echo "Installation of ITK 5.0.1 done."
 echo -e "\n"
 ## Installation of GATE
-echo "Installation of Gate V8.1"
-mkdir gate_v8.1.p01-build
-mkdir gate_v8.1.p01-install
-cd gate_v8.1.p01-build
-cmake -DCMAKE_INSTALL_PREFIX=$GPTH/GATE/gate_v8.1.p01-install -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=RELEASE -DGATE_DOWNLOAD_BENCHMARKS_DATA=OFF -DGATE_USE_DAVIS=OFF -DGATE_USE_ECAT7=OFF -DGATE_USE_GEANT4_UIVIS=ON -DGATE_USE_GPU=OFF -DGATE_USE_ITK=ON -DGATE_USE_LMF=OFF -DGATE_USE_OPTICAL=ON -DGATE_USE_RTK=OFF -DGATE_USE_STDC11=ON -DGATE_USE_SYSTEM_CLHEP=OFF -DGATE_USE_XRAYLIB=OFF -DGeant4_DIR=$GPTH/GATE/geant4.10.04.p02-install/lib/Geant4-10.4.2 -DITK_DIR=/usr/local/lib/cmake/ITK-4.13 -DROOTCINT_EXECUTABLE=$GPTH/GATE/root-6.14.04-build/bin/rootcint -DROOT_CONFIG_EXECUTABLE=$GPTH/GATE/root-6.14.04-build/bin/root-config $GPTH/GATE/gate_v8.1.p01
+echo "Installation of Gate V9.0"
+mkdir Gate-9.0-build
+mkdir Gate-9.0-install
+cd Gate-9.0-build
+cmake -DCMAKE_INSTALL_PREFIX=$GPTH/GATE/Gate-9.0-install -DBUILD_TESTING=OFF -DCMAKE_BUILD_TYPE=RELEASE -DGATE_DOWNLOAD_BENCHMARKS_DATA=OFF -DGATE_USE_DAVIS=OFF -DGATE_USE_ECAT7=OFF -DGATE_USE_GEANT4_UIVIS=ON -DGATE_USE_GPU=OFF -DGATE_USE_ITK=ON -DGATE_USE_LMF=OFF -DGATE_USE_OPTICAL=ON -DGATE_USE_RTK=OFF -DGATE_USE_STDC11=ON -DGATE_USE_SYSTEM_CLHEP=OFF -DGATE_USE_XRAYLIB=OFF -DGeant4_DIR=$GPTH/GATE/geant4.10.06.p01-install/lib/Geant4-10.6.1 -DITK_DIR=/usr/local/lib/cmake/ITK-5.0 -DROOTCINT_EXECUTABLE=$GPTH/GATE/root-6.20.04-build/bin/rootcint -DROOT_CONFIG_EXECUTABLE=$GPTH/GATE/root-6.20.04-build/bin/root-config $GPTH/GATE/Gate-9.0
 make -j$(nproc)
 make install
-echo "Installation of Gate V8.1 done."
+echo "Installation of Gate V9.0 done."
 cd ..
 
 ## Export GATE environnment (path variable)
 touch gate_env.sh
-echo 'source' $GPTH'/GATE/root-6.14.04-build/bin/thisroot.sh' >> gate_env.sh
-echo 'source' $GPTH'/GATE/geant4.10.04.p02-install/bin/geant4.sh' >> gate_env.sh
-echo 'export PATH=$PATH:'$GPTH'/GATE/gate_v8.1.p01-install/bin' >> gate_env.sh
+echo 'source' $GPTH'/GATE/root-6.20.04-build/bin/thisroot.sh' >> gate_env.sh
+echo 'source' $GPTH'/GATE/geant4.10.06.p01-install/bin/geant4.sh' >> gate_env.sh
+echo 'export PATH=$PATH:'$GPTH'/GATE/Gate-9.0-install/bin' >> gate_env.sh
 echo -e "\n" >> ~/.bashrc
 echo '# export path variable for GATE' >> ~/.bashrc
-echo 'alias source-gatev8.1'='"source '$GPTH'/GATE/gate_env.sh''"' >> ~/.bashrc
+echo 'alias gate90'='"source '$GPTH'/GATE/gate_env.sh''"' >> ~/.bashrc
 source ~/.bashrc
 
-## verify if Gate is installed and present in $GPTH/GATE/gate_v8.1.p01-install/bin
-source-gatev8.1
+## verify if Gate is installed and present in $GPTH/GATE/Gate-9.0-install/bin
+gate90
 if ! which Gate 2>/dev/null
 then
     echo "'Gate' was not found in PATH, a problem seems to be appeared during installation."
@@ -291,13 +301,13 @@ Advice if you are not an advanced user : Always answer yes for HTcondor prompt G
 done
 ## Installation of Cluster tools for Ubuntu users
 #jobsplitter
-cd $GPTH/GATE/gate_v8.1.p01/cluster_tools/jobsplitter
+cd $GPTH/GATE/Gate-9.0/cluster_tools/jobsplitter
 make
-cp $GPTH/GATE/gate_v8.1.p01/cluster_tools/jobsplitter/gjs $GPTH/GATE/gate_v8.1.p01-install/bin
+cp $GPTH/GATE/Gate-9.0/cluster_tools/jobsplitter/gjs $GPTH/GATE/Gate-9.0-install/bin
 #filemerger
-cd $GPTH/GATE/gate_v8.1.p01/cluster_tools/filemerger
+cd $GPTH/GATE/Gate-9.0/cluster_tools/filemerger
 make
-cp $GPTH/GATE/gate_v8.1.p01/cluster_tools/filemerger/gjm $GPTH/GATE/gate_v8.1.p01-install/bin
+cp $GPTH/GATE/Gate-9.0/cluster_tools/filemerger/gjm $GPTH/GATE/Gate-9.0-install/bin
 #HTcondor for multicore processing (clustering) (always anwser yes to gui prompt for easy use)
 sudo apt-get install htcondor -y
 sudo condor_master
