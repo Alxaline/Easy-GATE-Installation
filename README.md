@@ -13,7 +13,7 @@
 <p align="justify">
 GATE is an advanced opensource software developed by the international OpenGATE collaboration and dedicated to numerical simulations in medical imaging and radiotherapy. It currently supports simulations of Emission Tomography (Positron Emission Tomography - PET and Single Photon Emission Computed Tomography - SPECT), Computed Tomography (CT), Optical Imaging (Bioluminescence and Fluorescence) and Radiotherapy experiments. Using an easy-to-learn macro mechanism to configurate simple or highly sophisticated experimental settings, GATE now plays a key role in the design of new medical imaging devices, in the optimization of acquisition protocols and in the development and assessment of image reconstruction algorithms and correction techniques. It can also be used for dose calculation in radiotherapy experiments.
 
-The installation of GATE is tedious, time consuming and may seem complicated for a novice user. In order not to discourage a novice user to apprehend the formidable tool that is GATE. You can use the script provided here which will install absolutely all the necessary files. All you have to do is comply the following instructions. The compilation is long, so don't be afraid !
+The installation of GATE is tedious, time consuming and may seem complicated for a novice user. In order not to discourage a novice user to apprehend the formidable tool GATE is, you can use the script provided here which will install absolutely all the necessary files. All you have to do is comply the following instructions. The compilation is long, so don't be afraid !
 For more advance users, the script also allows you to install cluster tools with HTcondor (only for Ubuntu distro).
 </p>
 
@@ -30,8 +30,8 @@ If you want the tool available for other distributions, please contact me !
 Some informations : 
 - If you want to know more about GATE, please refer to [the official webpage of GATE](http://www.opengatecollaboration.org/).<br/>
 - GATE User's Guide is available on [Wiki OpenGATE](http://wiki.opengatecollaboration.org/index.php/Users_Guide).<br/>
-- Before use this tool on your system maybe you want to know about the possibility to use an image of the vGATE 9.0, virtual machine equipped with all the necessary software for running GATE simulations, please refer to [the official vGate 9.0 webpage](https://opengate.readthedocs.io/en/latest/compilation_instructions.html)<br/>
-
+- Before using this tool on your system it would be interesting to know about the possibility to use an image of the vGATE 9.0, virtual machine equipped with all the necessary software for running GATE simulations. Please refer to [the official vGate 9.0 webpage](https://opengate.readthedocs.io/en/latest/compilation_instructions.html)<br/>
+ 
 Report bugs to the author [Alexandre CARRE](mailto:alexandre.carre@gustaveroussy.fr)<br/>
 NB : use this script at your own risk.
 
